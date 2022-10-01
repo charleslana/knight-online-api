@@ -15,7 +15,7 @@ public class UserHeroBasicDTO implements Serializable {
 
     private Long id;
     private Integer level;
-    private Integer experience;
+    private Long experience;
     private Integer enhanced;
     private HeroBasicDTO hero;
 }

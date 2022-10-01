@@ -38,7 +38,7 @@ public class UserHeroEntity implements Serializable {
     private Integer level = 1;
 
     @Column(name = "experience", nullable = false)
-    private Integer experience = 0;
+    private Long experience = 0L;
 
     @Column(name = "enhanced", nullable = false)
     private Integer enhanced = 0;

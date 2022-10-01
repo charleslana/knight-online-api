@@ -16,7 +16,7 @@
             <column type="integer" name="level" defaultValue="1">
                 <constraints nullable="false"/>
             </column>
-            <column type="integer" name="experience" defaultValue="0">
+            <column type="bigint" name="experience" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
             <column type="integer" name="enhanced" defaultValue="0">

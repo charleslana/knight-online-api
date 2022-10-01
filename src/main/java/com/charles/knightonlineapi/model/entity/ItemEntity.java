@@ -5,33 +5,29 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_hero")
-public class HeroEntity implements Serializable {
+@Table(name = "tb_item")
+public class ItemEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(name = "hero_sequence", sequenceName = "hero_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hero_sequence")
+    @SequenceGenerator(name = "item_sequence", sequenceName = "item_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_sequence")
     @Column(name = "id")
     private Long id;
 
@@ -51,28 +47,10 @@ public class HeroEntity implements Serializable {
     private Long damage;
 
     @Column(name = "critical_rate")
-    private Integer criticalRate;
+    private Long criticalRate;
 
-    @Column(name = "critical_damage")
-    private Integer criticalDamage;
-
-    @Column(name = "block_chance")
-    private Integer blockChance;
-
-    @Column(name = "recover_life_chance")
-    private Integer recoverLifeChance;
-
-    @Column(name = "double_damage_chance")
-    private Integer doubleDamageChance;
-
-    @Column(name = "reflected_damage_chance")
-    private Integer reflectedDamageChance;
-
-    @Column(name = "poison_chance")
-    private Integer poisonChance;
-
-    @Column(name = "recover_energy_chance")
-    private Integer recoverEnergyChance;
+    @Column(name = "critical damage")
+    private Long criticalDamage;
 
     @Column(name = "created_at")
     @CreationTimestamp
@@ -81,7 +59,4 @@ public class HeroEntity implements Serializable {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-    @OneToMany(mappedBy = "hero", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<UserHeroEntity> heroEntityList;
 }

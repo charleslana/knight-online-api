@@ -18,4 +18,8 @@ public class UserBasicDTO implements Serializable {
     private String name;
     private GenderEnum gender;
     private Integer level;
+    private Long experience;
+    private Long gold;
+    private Long silver;
+    private Long trophy;
 }

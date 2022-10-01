@@ -26,6 +26,18 @@
             <column type="integer" name="level" defaultValue="1">
                 <constraints nullable="false"/>
             </column>
+            <column type="bigint" name="experience" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column type="bigint" name="gold" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
+            <column type="bigint" name="silver" defaultValue="5000">
+                <constraints nullable="false"/>
+            </column>
+            <column type="bigint" name="trophy" defaultValue="0">
+                <constraints nullable="false"/>
+            </column>
             <column type="varchar(255)" name="status" defaultValue="ACTIVE">
                 <constraints nullable="false"/>
             </column>

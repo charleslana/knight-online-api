@@ -16,4 +16,15 @@ public class HeroBasicDTO implements Serializable {
     private Long id;
     private String name;
     private String image;
+    private Long life;
+    private Long armor;
+    private Long damage;
+    private Integer criticalRate;
+    private Integer criticalDamage;
+    private Integer blockChance;
+    private Integer recoverLifeChance;
+    private Integer doubleDamageChance;
+    private Integer reflectedDamageChance;
+    private Integer poisonChance;
+    private Integer recoverEnergyChance;
 }

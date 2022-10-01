@@ -19,6 +19,17 @@
             <column type="varchar(255)" name="image">
                 <constraints nullable="false"/>
             </column>
+            <column type="bigint" name="life"/>
+            <column type="bigint" name="armor"/>
+            <column type="bigint" name="damage"/>
+            <column type="integer" name="critical_rate"/>
+            <column type="integer" name="critical_damage"/>
+            <column type="integer" name="block_chance"/>
+            <column type="integer" name="recover_life_chance"/>
+            <column type="integer" name="double_damage_chance"/>
+            <column type="integer" name="reflected_damage_chance"/>
+            <column type="integer" name="poison_chance"/>
+            <column type="integer" name="recover_energy_chance"/>
             <column type="timestamp" name="created_at" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>

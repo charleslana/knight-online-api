@@ -56,6 +56,18 @@ public class UserEntity implements Serializable, UserDetails {
     @Column(name = "level", nullable = false)
     private Integer level = 1;
 
+    @Column(name = "experience", nullable = false)
+    private Long experience = 0L;
+
+    @Column(name = "gold", nullable = false)
+    private Long gold = 0L;
+
+    @Column(name = "silver", nullable = false)
+    private Long silver = 5000L;
+
+    @Column(name = "trophy", nullable = false)
+    private Long trophy = 0L;
+
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusEnum status = StatusEnum.ACTIVE;
