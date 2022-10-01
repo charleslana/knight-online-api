@@ -98,6 +98,10 @@ public class UserService implements UserDetailsService {
         return new UserDetailsDTO(roles, entity.getPassword(), entity.getEmail());
     }
 
+    public UserEntity getById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new BusinessRuleException(MessageUtils.USER_EXCEPTION, "user.not.found"));
+    }
+
     private void validateExistsEmail(UserDTO dto) {
         boolean existsByEmail = repository.existsByEmail(dto.getEmail());
         if (existsByEmail) {

@@ -69,7 +69,7 @@ public class HeroService {
         return new ResponseDTO(MessageUtils.HERO_SUCCESS, "hero.deleted", ms);
     }
 
-    private HeroEntity getById(Long id) {
+    public HeroEntity getById(Long id) {
         return repository.findById(id).orElseThrow(() -> new BusinessRuleException(MessageUtils.HERO_EXCEPTION, "hero.not.found"));
     }
 
