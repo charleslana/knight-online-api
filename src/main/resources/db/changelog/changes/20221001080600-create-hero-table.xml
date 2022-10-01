@@ -5,31 +5,18 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="20220928110800-1" author="charles-lana">
+    <changeSet id="20221001080600-1" author="charles-lana">
 
-        <createSequence sequenceName="user_sequence"/>
+        <createSequence sequenceName="hero_sequence"/>
 
-        <createTable tableName="tb_user">
+        <createTable tableName="tb_hero">
             <column type="bigint" name="id">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column type="varchar(50)" name="email">
+            <column type="varchar(255)" name="name">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column type="varchar(255)" name="password">
-                <constraints nullable="false"/>
-            </column>
-            <column type="varchar(20)" name="name">
-                <constraints unique="true"/>
-            </column>
-            <column type="varchar(255)" name="gender"/>
-            <column type="integer" name="level" defaultValue="1">
-                <constraints nullable="false"/>
-            </column>
-            <column type="varchar(255)" name="status" defaultValue="ACTIVE">
-                <constraints nullable="false"/>
-            </column>
-            <column type="varchar(255)" name="role" defaultValue="USER">
+            <column type="varchar(255)" name="image">
                 <constraints nullable="false"/>
             </column>
             <column type="timestamp" name="created_at" defaultValueComputed="CURRENT_TIMESTAMP">

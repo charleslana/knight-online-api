@@ -1,7 +1,9 @@
 package com.charles.knightonlineapi.service.mock;
 
+import com.charles.knightonlineapi.enums.RoleEnum;
 import com.charles.knightonlineapi.model.dto.UserDTO;
 import com.charles.knightonlineapi.model.entity.UserEntity;
+import com.charles.knightonlineapi.model.mapper.UserMapper;
 import com.charles.knightonlineapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,9 +20,18 @@ public class UserMock {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private UserMapper mapper;
+
     public void createUser(UserDTO dto) {
-        UserEntity entity = new UserEntity();
-        entity.setEmail(dto.getEmail());
+        UserEntity entity = mapper.toEntity(dto);
+        entity.setPassword(encoder.encode(dto.getPassword()));
+        repository.save(entity);
+    }
+
+    public void createUserWithRole(UserDTO dto, RoleEnum role) {
+        UserEntity entity = mapper.toEntity(dto);
+        entity.setRole(role);
         entity.setPassword(encoder.encode(dto.getPassword()));
         repository.save(entity);
     }

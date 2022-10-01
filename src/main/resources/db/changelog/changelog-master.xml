@@ -6,4 +6,5 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <include file="db/changelog/changes/20220928110800-create-user-table.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/changes/20221001080600-create-hero-table.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>
