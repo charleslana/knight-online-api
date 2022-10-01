@@ -1,6 +1,7 @@
 package com.charles.knightonlineapi.repository;
 
 import com.charles.knightonlineapi.enums.StatusEnum;
+import com.charles.knightonlineapi.model.dto.UserBasicDTO;
 import com.charles.knightonlineapi.model.entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +31,9 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     @Query("select u from UserEntity u where u.email = ?1 and u.status <> ?2")
     Optional<UserEntity> findByEmailAndStatusNot(String email, StatusEnum status);
+
+    @Query(name = "find_user_basic_dto", nativeQuery=true)
+    Optional<UserBasicDTO> findByIdDTO(@Param("id") Long id);
 
     @Query("FROM UserEntity u where lower(u.name) like %:searchTerm%")
     Page<UserEntity> search(@Param("searchTerm") String searchTerm, Pageable pageable);

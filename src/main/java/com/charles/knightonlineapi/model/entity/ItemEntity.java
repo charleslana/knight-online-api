@@ -16,10 +16,10 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@Entity
-@Table(name = "tb_item")
+//@Getter
+//@Setter
+//@Entity
+//@Table(name = "tb_item")
 public class ItemEntity implements Serializable {
 
     @Serial

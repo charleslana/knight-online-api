@@ -63,7 +63,7 @@ public class UserService implements UserDetailsService {
     }
 
     public UserBasicDTO get(Long id) {
-        return repository.findById(id).map(mapper::toBasicDto).orElseThrow(() -> new BusinessRuleException(MessageUtils.USER_EXCEPTION, "user.not.found"));
+        return repository.findByIdDTO(id).orElseThrow(() -> new BusinessRuleException(MessageUtils.USER_EXCEPTION, "user.not.found"));
     }
 
     public UserBasicDTO getDetail() {

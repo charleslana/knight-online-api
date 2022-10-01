@@ -3,6 +3,7 @@ package com.charles.knightonlineapi.model.entity;
 import com.charles.knightonlineapi.enums.GenderEnum;
 import com.charles.knightonlineapi.enums.RoleEnum;
 import com.charles.knightonlineapi.enums.StatusEnum;
+import com.charles.knightonlineapi.model.dto.UserBasicDTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,16 +12,21 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,6 +34,46 @@ import java.util.Collection;
 @Getter
 @Setter
 @Entity
+@NamedNativeQuery(
+        name = "find_user_basic_dto",
+        query = """
+        select *,
+            u.level * 100 as life,
+            u.level * 200 as armor,
+            u.level * 50 as damage,
+            case
+                when cast(u.level * 15 / 100.50 as numeric(10, 2)) > 100 then 100
+                else cast(u.level * 15 / 100.50 as numeric(10, 2))
+                end as criticalRate,
+            case
+                when cast(u.level + 100 * 2 / 2.1 as numeric(10, 2)) > 1000 then 1000
+                else cast(u.level + 100 * 2 / 2.1 as numeric(10, 2))
+                end as criticalDamage
+            from tb_user u where u.id = :id
+        """,
+        resultSetMapping = "user_basic_dto"
+)
+@SqlResultSetMapping(
+        name = "user_basic_dto",
+        classes = @ConstructorResult(
+                targetClass = UserBasicDTO.class,
+                columns = {
+                        @ColumnResult(name = "id", type = Long.class),
+                        @ColumnResult(name = "name", type = String.class),
+                        @ColumnResult(name = "gender", type = GenderEnum.class),
+                        @ColumnResult(name = "level", type = Integer.class),
+                        @ColumnResult(name = "experience", type = Long.class),
+                        @ColumnResult(name = "gold", type = Long.class),
+                        @ColumnResult(name = "silver", type = Long.class),
+                        @ColumnResult(name = "trophy", type = Long.class),
+                        @ColumnResult(name = "life", type = Long.class),
+                        @ColumnResult(name = "armor", type = Long.class),
+                        @ColumnResult(name = "damage", type = Long.class),
+                        @ColumnResult(name = "criticalRate", type = BigDecimal.class),
+                        @ColumnResult(name = "criticalDamage", type = BigDecimal.class)
+                }
+        )
+)
 @Table(name = "tb_user")
 public class UserEntity implements Serializable, UserDetails {
 
