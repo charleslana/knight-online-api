@@ -70,9 +70,7 @@ class UserHeroControllerTest extends CommonIntTest {
     @DisplayName("Should create user hero")
     @RunWithMockCustomUser(authorities = "ROLE_ADMIN")
     void shouldCreateUserHero() throws Exception {
-        heroMock.deleteAllHero();
-        HeroDTO heroDTO = heroMock.getHeroMock(TestUtils.generateRandomString());
-        heroMock.createHero(heroDTO);
+        userHeroMock.deleteAllUserHero();
         UserHeroDTO dto = userHeroMock.getUserHeroMock(userMock.getUser(), heroMock.getHero());
 
         this.getMockMvc()
