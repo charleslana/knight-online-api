@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -19,6 +20,6 @@ public class ItemBasicDTO implements Serializable {
     private Long life;
     private Long armor;
     private Long damage;
-    private Integer criticalRate;
-    private Integer criticalDamage;
+    private BigDecimal criticalRate;
+    private BigDecimal criticalDamage;
 }

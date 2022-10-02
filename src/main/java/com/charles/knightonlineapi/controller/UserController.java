@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "update user")
+    @Operation(summary = "Update user")
     @PutMapping
     public ResponseEntity<ResponseDTO> update(@RequestBody @Valid UserNameGenderDTO dto) {
         log.info("REST request to update user: {}", dto);

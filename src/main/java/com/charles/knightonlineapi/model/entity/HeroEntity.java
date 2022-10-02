@@ -17,6 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -51,28 +52,28 @@ public class HeroEntity implements Serializable {
     private Long damage;
 
     @Column(name = "critical_rate")
-    private Integer criticalRate;
+    private BigDecimal criticalRate;
 
     @Column(name = "critical_damage")
-    private Integer criticalDamage;
+    private BigDecimal criticalDamage;
 
-    @Column(name = "block_chance")
-    private Integer blockChance;
+    @Column(name = "block")
+    private BigDecimal block;
 
-    @Column(name = "recover_life_chance")
-    private Integer recoverLifeChance;
+    @Column(name = "recover_life")
+    private BigDecimal recoverLife;
 
-    @Column(name = "double_damage_chance")
-    private Integer doubleDamageChance;
+    @Column(name = "double_damage")
+    private BigDecimal doubleDamage;
 
-    @Column(name = "reflected_damage_chance")
-    private Integer reflectedDamageChance;
+    @Column(name = "reflected_damage")
+    private BigDecimal reflectedDamage;
 
-    @Column(name = "poison_chance")
-    private Integer poisonChance;
+    @Column(name = "poison")
+    private BigDecimal poison;
 
-    @Column(name = "recover_energy_chance")
-    private Integer recoverEnergyChance;
+    @Column(name = "recover_energy")
+    private BigDecimal recoverEnergy;
 
     @Column(name = "created_at")
     @CreationTimestamp

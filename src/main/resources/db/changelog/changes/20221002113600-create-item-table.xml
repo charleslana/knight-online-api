@@ -5,11 +5,11 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet id="20221001080600-1" author="charles-lana">
+    <changeSet id="20221002113600-1" author="charles-lana">
 
-        <createSequence sequenceName="hero_sequence"/>
+        <createSequence sequenceName="item_sequence"/>
 
-        <createTable tableName="tb_hero">
+        <createTable tableName="tb_item">
             <column type="bigint" name="id">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
@@ -24,12 +24,6 @@
             <column type="bigint" name="damage"/>
             <column type="decimal" name="critical_rate"/>
             <column type="decimal" name="critical_damage"/>
-            <column type="decimal" name="block"/>
-            <column type="decimal" name="recover_life"/>
-            <column type="decimal" name="double_damage"/>
-            <column type="decimal" name="reflected_damage"/>
-            <column type="decimal" name="poison"/>
-            <column type="decimal" name="recover_energy"/>
             <column type="timestamp" name="created_at" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>

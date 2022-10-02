@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
@@ -47,10 +48,10 @@ public class ItemEntity implements Serializable {
     private Long damage;
 
     @Column(name = "critical_rate")
-    private Integer criticalRate;
+    private BigDecimal criticalRate;
 
-    @Column(name = "critical damage")
-    private Integer criticalDamage;
+    @Column(name = "critical_damage")
+    private BigDecimal criticalDamage;
 
     @Column(name = "created_at")
     @CreationTimestamp

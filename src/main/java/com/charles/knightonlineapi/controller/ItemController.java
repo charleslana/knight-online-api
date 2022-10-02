@@ -1,9 +1,9 @@
 package com.charles.knightonlineapi.controller;
 
-import com.charles.knightonlineapi.model.dto.HeroBasicDTO;
-import com.charles.knightonlineapi.model.dto.HeroDTO;
+import com.charles.knightonlineapi.model.dto.ItemBasicDTO;
+import com.charles.knightonlineapi.model.dto.ItemDTO;
 import com.charles.knightonlineapi.model.dto.ResponseDTO;
-import com.charles.knightonlineapi.service.HeroService;
+import com.charles.knightonlineapi.service.ItemService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,63 +23,63 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/hero")
+@RequestMapping("/item")
 @RequiredArgsConstructor
 @Slf4j
-public class HeroController {
+public class ItemController {
 
-    private final HeroService service;
+    private final ItemService service;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @Operation(summary = "Create hero")
+    @Operation(summary = "Create item")
     @PostMapping
-    public ResponseEntity<ResponseDTO> save(@RequestBody @Valid HeroDTO dto) {
-        log.info("REST request to create hero: {}", dto);
+    public ResponseEntity<ResponseDTO> save(@RequestBody @Valid ItemDTO dto) {
+        log.info("REST request to create item: {}", dto);
         return ResponseEntity.ok(service.save(dto));
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @Operation(summary = "Update hero")
+    @Operation(summary = "Update item")
     @PutMapping
-    public ResponseEntity<ResponseDTO> update(@RequestBody @Valid HeroDTO dto) {
-        log.info("REST request to update hero: {}", dto);
+    public ResponseEntity<ResponseDTO> update(@RequestBody @Valid ItemDTO dto) {
+        log.info("REST request to update item: {}", dto);
         return ResponseEntity.ok(service.update(dto));
     }
 
     @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "Get hero")
+    @Operation(summary = "Get item")
     @GetMapping("/{id}")
-    public ResponseEntity<HeroBasicDTO> get(@PathVariable("id") Long id) {
-        log.info("REST request to get hero: {}", id);
+    public ResponseEntity<ItemBasicDTO> get(@PathVariable("id") Long id) {
+        log.info("REST request to get item: {}", id);
         return ResponseEntity.ok(service.get(id));
     }
 
     @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "Get all heroes")
+    @Operation(summary = "Get all items")
     @GetMapping
-    public ResponseEntity<Page<HeroBasicDTO>> getAll(
+    public ResponseEntity<Page<ItemBasicDTO>> getAll(
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
-        log.info("REST request to get all heroes");
+        log.info("REST request to get all items");
         return ResponseEntity.ok(service.getAll(page, size));
     }
 
     @PreAuthorize("isAuthenticated()")
-    @Operation(summary = "Search hero name")
+    @Operation(summary = "Search item name")
     @GetMapping("/search")
-    public ResponseEntity<Page<HeroBasicDTO>> search(
+    public ResponseEntity<Page<ItemBasicDTO>> search(
             @RequestParam("searchTerm") String searchTerm,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
-        log.info("REST to get search heroes");
+        log.info("REST to get search items");
         return ResponseEntity.ok(service.search(searchTerm, page, size));
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @Operation(summary = "Delete hero by id")
+    @Operation(summary = "Delete item by id")
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseDTO> delete(@PathVariable("id") Long id) {
-        log.info("REST to delete hero by id: {}", id);
+        log.info("REST to delete item by id: {}", id);
         return ResponseEntity.ok(service.delete(id));
     }
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -19,12 +20,12 @@ public class HeroBasicDTO implements Serializable {
     private Long life;
     private Long armor;
     private Long damage;
-    private Integer criticalRate;
-    private Integer criticalDamage;
-    private Integer blockChance;
-    private Integer recoverLifeChance;
-    private Integer doubleDamageChance;
-    private Integer reflectedDamageChance;
-    private Integer poisonChance;
-    private Integer recoverEnergyChance;
+    private BigDecimal criticalRate;
+    private BigDecimal criticalDamage;
+    private BigDecimal block;
+    private BigDecimal recoverLife;
+    private BigDecimal doubleDamage;
+    private BigDecimal reflectedDamage;
+    private BigDecimal poison;
+    private BigDecimal recoverEnergy;
 }
