@@ -16,10 +16,10 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-//@Getter
-//@Setter
-//@Entity
-//@Table(name = "tb_item")
+@Getter
+@Setter
+@Entity
+@Table(name = "tb_item")
 public class ItemEntity implements Serializable {
 
     @Serial
@@ -47,10 +47,10 @@ public class ItemEntity implements Serializable {
     private Long damage;
 
     @Column(name = "critical_rate")
-    private Long criticalRate;
+    private Integer criticalRate;
 
     @Column(name = "critical damage")
-    private Long criticalDamage;
+    private Integer criticalDamage;
 
     @Column(name = "created_at")
     @CreationTimestamp
