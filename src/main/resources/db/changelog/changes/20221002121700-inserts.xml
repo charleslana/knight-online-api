@@ -20,6 +20,10 @@
             <column name="password" value="$2a$10$i5iLVXcwcUSBDa4XNE4EUeP63HNE5w29FNDQeP.wdtNnGReo.wlVm"/>
             <column name="role" value="ADMIN"/>
         </insert>
+
+        <sql>
+            ALTER SEQUENCE user_sequence RESTART WITH 3;
+        </sql>
     </changeSet>
 
     <changeSet id="20221002121700-2" author="charles-lana">
@@ -41,6 +45,10 @@
             <column name="name" value="Dark Knight"/>
             <column name="image" value="2"/>
         </insert>
+
+        <sql>
+            ALTER SEQUENCE hero_sequence RESTART WITH 3;
+        </sql>
     </changeSet>
 
     <changeSet id="20221002121700-4" author="charles-lana">
@@ -55,6 +63,10 @@
             <column name="user_id" value="1"/>
             <column name="hero_id" value="2"/>
         </insert>
+
+        <sql>
+            ALTER SEQUENCE user_hero_sequence RESTART WITH 3;
+        </sql>
     </changeSet>
 
     <changeSet id="20221002121700-5" author="charles-lana">
@@ -62,12 +74,36 @@
             <column name="id" value="1"/>
             <column name="name" value="Sword"/>
             <column name="image" value="1"/>
+            <column name="level" value="1"/>
         </insert>
 
         <insert tableName="tb_item">
             <column name="id" value="2"/>
             <column name="name" value="Shield"/>
             <column name="image" value="2"/>
+            <column name="level" value="1"/>
         </insert>
+
+        <sql>
+            ALTER SEQUENCE item_sequence RESTART WITH 3;
+        </sql>
+    </changeSet>
+
+    <changeSet id="20221002121700-6" author="charles-lana">
+        <insert tableName="tb_user_item">
+            <column name="id" value="1"/>
+            <column name="user_id" value="1"/>
+            <column name="item_id" value="1"/>
+        </insert>
+
+        <insert tableName="tb_user_item">
+            <column name="id" value="2"/>
+            <column name="user_id" value="1"/>
+            <column name="item_id" value="2"/>
+        </insert>
+
+        <sql>
+            ALTER SEQUENCE user_item_sequence RESTART WITH 3;
+        </sql>
     </changeSet>
 </databaseChangeLog>

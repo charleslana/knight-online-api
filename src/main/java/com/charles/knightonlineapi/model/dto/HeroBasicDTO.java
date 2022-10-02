@@ -1,5 +1,6 @@
 package com.charles.knightonlineapi.model.dto;
 
+import com.charles.knightonlineapi.enums.RarityEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,4 +29,5 @@ public class HeroBasicDTO implements Serializable {
     private BigDecimal reflectedDamage;
     private BigDecimal poison;
     private BigDecimal recoverEnergy;
+    private RarityEnum rarity;
 }

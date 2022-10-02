@@ -27,6 +27,7 @@ public class ItemMock {
         ItemDTO dto = new ItemDTO();
         dto.setName(randomString);
         dto.setImage(randomString);
+        dto.setLevel(1);
         return dto;
     }
 

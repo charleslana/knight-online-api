@@ -19,11 +19,15 @@
             <column type="varchar(255)" name="image">
                 <constraints nullable="false"/>
             </column>
+            <column type="integer" name="level">
+                <constraints nullable="false"/>
+            </column>
             <column type="bigint" name="life"/>
             <column type="bigint" name="armor"/>
             <column type="bigint" name="damage"/>
             <column type="decimal" name="critical_rate"/>
             <column type="decimal" name="critical_damage"/>
+            <column type="varchar(255)" name="rarity"/>
             <column type="timestamp" name="created_at" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>

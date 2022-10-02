@@ -82,6 +82,7 @@ class ItemControllerTest extends CommonIntTest {
         dto.setId(itemMock.getItem());
         dto.setName(TestUtils.generateRandomString());
         dto.setImage(TestUtils.generateRandomString());
+        dto.setLevel(1);
 
         this.getMockMvc()
                 .perform(put(BASE_URL)

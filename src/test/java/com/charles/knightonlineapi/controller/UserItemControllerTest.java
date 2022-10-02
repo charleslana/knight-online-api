@@ -4,11 +4,11 @@ import com.charles.knightonlineapi.KnightOnlineApiApplication;
 import com.charles.knightonlineapi.commons.CommonIntTest;
 import com.charles.knightonlineapi.commons.annotations.user.RunWithMockCustomUser;
 import com.charles.knightonlineapi.enums.RoleEnum;
-import com.charles.knightonlineapi.model.dto.HeroDTO;
+import com.charles.knightonlineapi.model.dto.ItemDTO;
 import com.charles.knightonlineapi.model.dto.UserDTO;
-import com.charles.knightonlineapi.model.dto.UserHeroDTO;
-import com.charles.knightonlineapi.service.mock.HeroMock;
-import com.charles.knightonlineapi.service.mock.UserHeroMock;
+import com.charles.knightonlineapi.model.dto.UserItemDTO;
+import com.charles.knightonlineapi.service.mock.ItemMock;
+import com.charles.knightonlineapi.service.mock.UserItemMock;
 import com.charles.knightonlineapi.service.mock.UserMock;
 import com.charles.knightonlineapi.utils.SerializationUtils;
 import com.charles.knightonlineapi.utils.TestUtils;
@@ -33,45 +33,45 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWithMockCustomUser
 @SpringBootTest(classes = KnightOnlineApiApplication.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class UserHeroControllerTest extends CommonIntTest {
+class UserItemControllerTest extends CommonIntTest {
 
-    private static final String BASE_URL = "/user/hero";
+    private static final String BASE_URL = "/user/item";
 
     @Autowired
     private UserMock userMock;
 
     @Autowired
-    private HeroMock heroMock;
+    private ItemMock itemMock;
 
     @Autowired
-    private UserHeroMock userHeroMock;
+    private UserItemMock userItemMock;
 
     @BeforeEach
     public void init() {
         UserDTO userDTO = userMock.getUserMock();
         userMock.createUserWithRole(userDTO, RoleEnum.ADMIN);
-        HeroDTO heroDTO = heroMock.getHeroMock(TestUtils.generateRandomString());
-        heroMock.createHero(heroDTO);
-        UserHeroDTO userHeroDTO = new UserHeroDTO();
-        userHeroDTO.setUserId(userMock.getUser());
-        userHeroDTO.setHeroId(heroMock.getHero());
-        userHeroMock.createUserHero(userHeroDTO);
+        ItemDTO itemDTO = itemMock.getItemMock(TestUtils.generateRandomString());
+        itemMock.createItem(itemDTO);
+        UserItemDTO userItemDTO = new UserItemDTO();
+        userItemDTO.setUserId(userMock.getUser());
+        userItemDTO.setItemId(itemMock.getItem());
+        userItemMock.createUserItem(userItemDTO);
     }
 
     @AfterEach
     public void close() {
-        heroMock.deleteAllHero();
-        userHeroMock.deleteAllUserHero();
+        itemMock.deleteAllItem();
+        userItemMock.deleteAllUserItem();
         userMock.deleteAllUser();
     }
 
     @Order(1)
     @Test
-    @DisplayName("Should create user hero")
+    @DisplayName("Should create user item")
     @RunWithMockCustomUser(authorities = "ROLE_ADMIN")
-    void shouldCreateUserHero() throws Exception {
-        userHeroMock.deleteAllUserHero();
-        UserHeroDTO dto = userHeroMock.getUserHeroMock(userMock.getUser(), heroMock.getHero());
+    void shouldCreateUserItem() throws Exception {
+        userItemMock.deleteAllUserItem();
+        UserItemDTO dto = userItemMock.getUserItemMock(userMock.getUser(), itemMock.getItem());
 
         this.getMockMvc()
                 .perform(post(BASE_URL)
@@ -79,22 +79,22 @@ class UserHeroControllerTest extends CommonIntTest {
                         .content(SerializationUtils.convertObjectToJsonString(dto)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message").isNotEmpty())
-                .andExpect(jsonPath("$.status").value("user_hero_success"));
+                .andExpect(jsonPath("$.status").value("user_item_success"));
     }
 
     @Test
-    @DisplayName("Should get user hero")
+    @DisplayName("Should get user item")
     @RunWithMockCustomUser(authorities = "ROLE_USER")
-    void shouldGetUserHero() throws Exception {
+    void shouldGetUserItem() throws Exception {
         this.getMockMvc()
-                .perform(get(buildUrl(BASE_URL, userHeroMock.getUserHero().toString())))
+                .perform(get(buildUrl(BASE_URL, userItemMock.getUserItem().toString())))
                 .andExpect(status().isOk());
     }
 
     @Test
-    @DisplayName("Should get all user heroes")
+    @DisplayName("Should get all user items")
     @RunWithMockCustomUser(authorities = "ROLE_USER")
-    void shouldGetAllUserHeroes() throws Exception {
+    void shouldGetAllUserItems() throws Exception {
         this.getMockMvc()
                 .perform(get(BASE_URL))
                 .andExpect(status().isOk())
@@ -102,13 +102,13 @@ class UserHeroControllerTest extends CommonIntTest {
     }
 
     @Test
-    @DisplayName("Should delete user hero")
+    @DisplayName("Should delete user item")
     @RunWithMockCustomUser(authorities = "ROLE_ADMIN")
-    void shouldDeleteUserHero() throws Exception {
+    void shouldDeleteUserItem() throws Exception {
         this.getMockMvc()
-                .perform(delete(buildUrl(BASE_URL, userHeroMock.getUserHero().toString())))
+                .perform(delete(buildUrl(BASE_URL, userItemMock.getUserItem().toString())))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message").isNotEmpty())
-                .andExpect(jsonPath("$.status").value("user_hero_success"));
+                .andExpect(jsonPath("$.status").value("user_item_success"));
     }
 }

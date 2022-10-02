@@ -16,4 +16,7 @@ public class MessageUtils {
 
     public static final String ITEM_EXCEPTION = "item.exception";
     public static final String ITEM_SUCCESS = "item.success";
+
+    public static final String USER_ITEM_EXCEPTION = "user.item.exception";
+    public static final String USER_ITEM_SUCCESS = "user.item.success";
 }

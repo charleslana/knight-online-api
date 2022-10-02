@@ -9,6 +9,7 @@
     <include file="db/changelog/changes/20221001080600-create-hero-table.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/changes/20221001105400-create-user-hero-table.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/changes/20221002113600-create-item-table.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/changes/20221002130500-create-user-item-table.xml" relativeToChangelogFile="false"/>
 
     <include file="db/changelog/changes/20221002121700-inserts.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

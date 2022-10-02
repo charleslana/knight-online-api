@@ -1,5 +1,6 @@
 package com.charles.knightonlineapi.model.entity;
 
+import com.charles.knightonlineapi.enums.RarityEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,6 +9,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -74,6 +77,10 @@ public class HeroEntity implements Serializable {
 
     @Column(name = "recover_energy")
     private BigDecimal recoverEnergy;
+
+    @Column(name = "rarity")
+    @Enumerated(EnumType.STRING)
+    private RarityEnum rarity;
 
     @Column(name = "created_at")
     @CreationTimestamp

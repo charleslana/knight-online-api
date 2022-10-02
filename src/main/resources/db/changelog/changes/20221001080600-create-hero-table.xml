@@ -30,6 +30,7 @@
             <column type="decimal" name="reflected_damage"/>
             <column type="decimal" name="poison"/>
             <column type="decimal" name="recover_energy"/>
+            <column type="varchar(255)" name="rarity"/>
             <column type="timestamp" name="created_at" defaultValueComputed="CURRENT_TIMESTAMP">
                 <constraints nullable="false" />
             </column>

@@ -1,21 +1,28 @@
 package com.charles.knightonlineapi.model.entity;
 
+import com.charles.knightonlineapi.enums.RarityEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,6 +45,9 @@ public class ItemEntity implements Serializable {
     @Column(name = "image", nullable = false)
     private String image;
 
+    @Column(name = "level", nullable = false)
+    private Integer level;
+
     @Column(name = "life")
     private Long life;
 
@@ -53,6 +63,10 @@ public class ItemEntity implements Serializable {
     @Column(name = "critical_damage")
     private BigDecimal criticalDamage;
 
+    @Column(name = "rarity")
+    @Enumerated(EnumType.STRING)
+    private RarityEnum rarity;
+
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -60,4 +74,7 @@ public class ItemEntity implements Serializable {
     @Column(name = "updated_at")
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "item", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<UserItemEntity> itemEntityList;
 }
